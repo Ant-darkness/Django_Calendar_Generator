@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar Generator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+        }
+        .container {
+            width: 95%;
+            margin: auto;
+        }
+        form {
+            margin: 20px 0;
+            text-align: center;
+        }
+        input {
+            padding: 8px;
+            margin-right: 5px;
+            width: 120px;
+        }
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .box {
+            background: white;
+            padding: 10px;
+            border: 2px solid black;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th {
+            padding: 5px;
+            background: #ddd;
+        }
+        td {
+            padding: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="number" name="year" placeholder="Enter Year" required>
+            <button type="submit">Generate Calendar</button>
+        </form>
+
+        {% if year %}
+        <h2 style="text-align:center;">CALENDAR OF {{ year }}AD</h2>
+
+        <div class="grid">
+            {% for m in months %}
+            <div class="box">
+                <h3 style="text-align:center;">{{ m.name }}</h3>
+                <table>
+                    <tr>
+                        <th>S</th>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>T</th>
+                        <th>F</th>
+                        <th>S</th>
+                    </tr>
+
+                    {% for week in m.days %}
+                    <tr>
+                        {% for day in week %}
+                            {% if day == 0 %}
+                                <td></td>
+                            {% else %}
+                                <td>{{ day }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>
