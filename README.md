@@ -39,15 +39,28 @@ The Django Calendar Generator is a lightweight web application that allows users
 
 ```text
 django-calendar-generator/
-│
-├── calendar_app/
-├── templates/
-├── static/
-│   ├── css/
-│   └── images/
-├── manage.py
-├── requirements.txt
-└── README.md
+│───README.md   
+└───calender
+    │   db.sqlite3
+    │   manage.py
+    │   
+    ├───calender
+    │   │   asgi.py
+    │   │   settings.py
+    │   │   urls.py
+    │   │   wsgi.py
+    │           
+    └───calendor
+        │   admin.py
+        │   apps.py
+        │   models.py
+        │   tests.py
+        │   urls.py
+        │   views.py
+        │      
+        ├───migrations           
+        ├───templates
+        └─── calender.html       
 ```
 
 ---
@@ -109,8 +122,6 @@ Visit:
 ```
 http://127.0.0.1:8000/
 ```
-
-
 
 ## 🎯 Learning Objectives
 
